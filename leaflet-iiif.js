@@ -7,7 +7,8 @@
 L.TileLayer.Iiif = L.TileLayer.extend({
   options: {
     continuousWorld: true,
-    tileSize: 256
+    tileSize: 256,
+    updateWhenIdle: true
   },
 
   initialize: function(url, options) {
@@ -51,6 +52,16 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
       // Call add TileLayer
       L.TileLayer.prototype.onAdd.call(_this, map);
+
+      // Reset tile sizes to handle non 256x256 IIIF tiles
+      _this.on('tileload', function(tile, url) {
+        var height, width, left, top;
+        height = 'height: ' + tile.tile.naturalHeight + 'px';
+        width = 'width: ' + tile.tile.naturalWidth + 'px';
+        left = 'left: ' + tile.tile.style.left;
+        top = 'top: ' + tile.tile.style.top;
+        tile.tile.style.cssText = [height, width, left, top].join(';');
+      });
     });
   },
   _getInfo: function() {
@@ -79,6 +90,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         switch (profile) {
           case 'http://library.stanford.edu/iiif/image-api/compliance.html#level1':
             _this.quality = 100;
+            break;
+          case 'http://library.stanford.edu/iiif/image-api/1.1/compliance.html':
+            _this.quality = 'native';
             break;
           case 'http://iiif.io/api/image/2/level2.json':
             _this.quality = 'default';
