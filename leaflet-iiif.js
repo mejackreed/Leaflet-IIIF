@@ -6,6 +6,7 @@
 
 L.TileLayer.Iiif = L.TileLayer.extend({
   options: {
+    continuousWorld: true,
     tileSize: 256
   },
 
@@ -20,7 +21,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var _this = this,
       x = coords.x,
       y = (coords.y),
-      scale = Math.pow(2, _this.maxZoom - coords.z),
+      zoom = map.getZoom(),
+      scale = Math.pow(2, _this.maxZoom - zoom),
       tileBaseSize = _this.options.tileSize * scale,
       minx = (x * tileBaseSize),
       miny = (y * tileBaseSize),
@@ -37,20 +39,38 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
   onAdd: function(map) {
     var _this = this;
+
+    // Wait for deferred to complete
     $.when(_this._infoDeferred).done(function() {
-      map.setView([-128, 64], 1);
+
+      // Try to center the map a bit
+      map.setView([-_this.options.tileSize / 2, _this.options.tileSize / 4], 1);
+
+      // Set maxZoom for map
+      map._layersMaxZoom = _this.maxZoom;
+
+      // Call add TileLayer
       L.TileLayer.prototype.onAdd.call(_this, map);
     });
   },
   _getInfo: function() {
     var _this = this;
+
+    // Look for a way to do this without jQuery
     $.getJSON(_this._infoUrl)
       .done(function(data) {
         _this.y = data.height;
         _this.x = data.width;
 
+        var profile,
+          tierSizes = [],
+          scale,
+          width_,
+          height_,
+          tilesX_,
+          tilesY_;
+
         // Set quality based off of IIIF version
-        var profile;
         if (data.profile instanceof Array) {
           profile = data.profile[0];
         }else {
@@ -73,6 +93,17 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         _this.maxZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
           ceilLog2(_this.y / _this.options.tileSize));
 
+        for (var i = 0; i <= _this.maxZoom; i++) {
+          scale = Math.pow(2, _this.maxZoom - i);
+          width_ = Math.ceil(_this.x / scale);
+          height_ = Math.ceil(_this.y / scale);
+          tilesX_ = Math.ceil(width_ / _this.options.tileSize);
+          tilesY_ = Math.ceil(height_ / _this.options.tileSize);
+          tierSizes.push([tilesX_, tilesY_]);
+        }
+
+        _this._tierSizes = tierSizes;
+
         // Resolved Deferred to initiate tilelayer load
         _this._infoDeferred.resolve();
       });
@@ -82,6 +113,20 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
   _templateUrl: function() {
     return this._infoToBaseUrl() + '{region}/{size}/{rotation}/{quality}.{format}';
+  },
+  _tileShouldBeLoaded: function(coords) {
+    var _this = this,
+      zoom = map.getZoom(),
+      sizes = _this._tierSizes[zoom],
+      x = coords.x,
+      y = (coords.y);
+
+    if (!sizes) return false;
+    if (x < 0 || sizes[0] <= x || y < 0 || sizes[1] <= y) {
+      return false;
+    }else {
+      return true;
+    }
   }
 });
 
