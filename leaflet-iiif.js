@@ -55,12 +55,16 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
       // Reset tile sizes to handle non 256x256 IIIF tiles
       _this.on('tileload', function(tile, url) {
-        var height, width, left, top;
-        height = 'height: ' + tile.tile.naturalHeight + 'px';
-        width = 'width: ' + tile.tile.naturalWidth + 'px';
-        left = 'left: ' + tile.tile.style.left;
-        top = 'top: ' + tile.tile.style.top;
-        tile.tile.style.cssText = [height, width, left, top].join(';');
+
+        var height = tile.tile.naturalHeight,
+          width = tile.tile.naturalWidth;
+
+        // No need to resize if tile is 256 x 256
+        if (height === 256 && width === 256) return;
+
+        tile.tile.style.width = width + 'px';
+        tile.tile.style.height = height + 'px';
+
       });
     });
   },
