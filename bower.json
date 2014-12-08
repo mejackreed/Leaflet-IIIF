@@ -1,0 +1,24 @@
+{
+  "name": "leaflet-iiif",
+  "main": "leaflet-iiif.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mejackreed/Leaflet-IIIF",
+  "description": "A Leaflet plugin to view IIIF images",
+  "keywords": [
+    "leaflet",
+    "iiif",
+    "map",
+    "zoom"
+  ],
+  "authors": [
+    "Jack Reed "
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
