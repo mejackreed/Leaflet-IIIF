@@ -1,10 +1,16 @@
 ## Leaflet-IIIF
 
-A Leaflet plugin for viewing IIIF images.
+A Leaflet plugin for viewing IIIF images. [See the demo](http://mejackreed.github.io/Leaflet-IIIF/examples/example.html)
 
 Requires [Leaflet.js](http://leafletjs.com/) and [jQuery](http://jquery.com/)
 
-Quick and easy to get going.
+#### Install with Bower
+
+```
+$ bower install leaflet-iiif
+```
+
+#### Quick and easy to get going.
 
 ```
 var map = L.map('map', {
