@@ -22,7 +22,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var _this = this,
       x = coords.x,
       y = (coords.y),
-      zoom = map.getZoom(),
+      zoom = _this._map.getZoom(),
       scale = Math.pow(2, _this.maxZoom - zoom),
       tileBaseSize = _this.options.tileSize * scale,
       minx = (x * tileBaseSize),
@@ -134,7 +134,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
   _tileShouldBeLoaded: function(coords) {
     var _this = this,
-      zoom = map.getZoom(),
+      zoom = _this._map.getZoom(),
       sizes = _this._tierSizes[zoom],
       x = coords.x,
       y = (coords.y);
