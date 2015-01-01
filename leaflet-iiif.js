@@ -44,8 +44,14 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Wait for deferred to complete
     $.when(_this._infoDeferred).done(function() {
 
-      // Try to center the map a bit
-      map.setView([-_this.options.tileSize / 2, _this.options.tileSize / 4], 1);
+      // Find best zoom level and center map
+      var initialZoom = _this._getInitialZoom(map.getSize()),
+        imageSize = _this._imageSizes[initialZoom],
+        sw = map.options.crs.pointToLatLng(L.point(0, imageSize.y), initialZoom),
+        ne = map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom),
+        bounds = L.latLngBounds(sw, ne);
+
+      map.fitBounds(bounds);
 
       // Set maxZoom for map
       map._layersMaxZoom = _this.maxZoom;
@@ -79,6 +85,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         var profile,
           tierSizes = [],
+          imageSizes = [],
           scale,
           width_,
           height_,
@@ -118,9 +125,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           tilesX_ = Math.ceil(width_ / _this.options.tileSize);
           tilesY_ = Math.ceil(height_ / _this.options.tileSize);
           tierSizes.push([tilesX_, tilesY_]);
+          imageSizes.push(L.point(width_,height_));
         }
 
         _this._tierSizes = tierSizes;
+        _this._imageSizes = imageSizes;
 
         // Resolved Deferred to initiate tilelayer load
         _this._infoDeferred.resolve();
@@ -145,6 +154,20 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     }else {
       return true;
     }
+  },
+  _getInitialZoom: function (mapSize) {
+    var _this = this,
+      tolerance = 0.8,
+      imageSize;
+
+    for (var i = _this.maxZoom; i >= 0; i--) {
+      imageSize = this._imageSizes[i];
+      if (imageSize.x * tolerance < mapSize.x && imageSize.y * tolerance < mapSize.y) {
+        return i;
+      }
+    }
+    // return a default zoom
+    return 2;
   }
 });
 
