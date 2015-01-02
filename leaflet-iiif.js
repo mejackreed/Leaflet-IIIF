@@ -51,7 +51,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         ne = map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom),
         bounds = L.latLngBounds(sw, ne);
 
-      map.fitBounds(bounds);
+      map.fitBounds(bounds, true);
 
       // Set maxZoom for map
       map._layersMaxZoom = _this.maxZoom;
