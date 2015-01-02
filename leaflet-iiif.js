@@ -105,6 +105,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           case 'http://library.stanford.edu/iiif/image-api/1.1/compliance.html':
             _this.quality = 'native';
             break;
+          case 'http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level1':
+            _this.quality = 'native';
+            break;
           case 'http://iiif.io/api/image/2/level2.json':
             _this.quality = 'default';
             break;
