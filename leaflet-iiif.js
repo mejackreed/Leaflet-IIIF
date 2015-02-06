@@ -111,7 +111,14 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           case 'http://iiif.io/api/image/2/level2.json':
             _this.quality = 'default';
             break;
+          case 'http://iiif.io/api/image/2/level1.json':
+            _this.quality = 'default';
+            break;
+          case 'http://iiif.io/api/image/2/level0.json':
+            _this.quality = 'default';
+            break;
         }
+        console.log(_this.quality)
 
         ceilLog2 = function(x) {
           return Math.ceil(Math.log(x) / Math.LN2);
