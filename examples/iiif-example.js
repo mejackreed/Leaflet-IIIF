@@ -19,7 +19,7 @@ apostle = L.tileLayer.iiif('http://ids.lib.harvard.edu/ids/iiif/25286610/info.js
 });
 
 iiifLayers = {
-  'Martin Luther King Jr. & Joan Baez ...': stanfordMlk,
+  // 'Martin Luther King Jr. & Joan Baez ...': stanfordMlk,
   'The provinces of New York and N...': princetonMap,
   'Apostle: Anonymous sculptor of Fl...': apostle
 };
