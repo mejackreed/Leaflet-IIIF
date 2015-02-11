@@ -23,3 +23,9 @@ L.tileLayer.iiif('http://example.com/iiifimage.jp2/info.json').addTo(map);
 ```
 
 Thanks to [klokantech/iiifviewer](https://github.com/klokantech/iiifviewer) and [turban/Leaflet.Zoomify](https://github.com/turban/Leaflet.Zoomify) who have similar plugins which were used in development of Leaflet-IIIF.
+
+#### Examples of use
+
+Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server.
+
+[http://rbsc.princeton.edu/versailles/map](http://rbsc.princeton.edu/versailles/map)
