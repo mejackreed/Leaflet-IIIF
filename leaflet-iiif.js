@@ -118,7 +118,6 @@ L.TileLayer.Iiif = L.TileLayer.extend({
             _this.quality = 'default';
             break;
         }
-        console.log(_this.quality)
 
         ceilLog2 = function(x) {
           return Math.ceil(Math.log(x) / Math.LN2);
