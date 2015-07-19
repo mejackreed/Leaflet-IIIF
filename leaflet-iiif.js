@@ -98,23 +98,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         }else {
           profile = data.profile;
         }
-        switch (profile) {
-          case 'http://library.stanford.edu/iiif/image-api/compliance.html#level1':
-            _this.quality = 100;
-            break;
-          case 'http://library.stanford.edu/iiif/image-api/1.1/compliance.html':
+        switch (true) {
+          case /^http:\/\/library.stanford.edu\/iiif\/image-api\/1.1\/compliance.html.*$/.test(profile):
             _this.quality = 'native';
             break;
-          case 'http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level1':
-            _this.quality = 'native';
-            break;
-          case 'http://iiif.io/api/image/2/level2.json':
-            _this.quality = 'default';
-            break;
-          case 'http://iiif.io/api/image/2/level1.json':
-            _this.quality = 'default';
-            break;
-          case 'http://iiif.io/api/image/2/level0.json':
+          case /^http:\/\/iiif.io\/api\/image\/2.*$/.test(profile):
             _this.quality = 'default';
             break;
         }
