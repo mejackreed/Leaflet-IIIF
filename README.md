@@ -4,13 +4,13 @@ A Leaflet plugin for viewing IIIF images. [See the demo](http://mejackreed.githu
 
 Requires [Leaflet.js](http://leafletjs.com/) and [jQuery](http://jquery.com/)
 
-#### Install with Bower
+### Install with Bower
 
 ```
 $ bower install leaflet-iiif
 ```
 
-#### Quick and easy to get going.
+### Quick and easy to get going.
 
 ```
 var map = L.map('map', {
@@ -24,7 +24,23 @@ L.tileLayer.iiif('http://example.com/iiifimage.jp2/info.json').addTo(map);
 
 Thanks to [klokantech/iiifviewer](https://github.com/klokantech/iiifviewer) and [turban/Leaflet.Zoomify](https://github.com/turban/Leaflet.Zoomify) who have similar plugins which were used in development of Leaflet-IIIF.
 
-#### Examples of use
+### Development
+
+Clone the repository
+
+```
+$ git clone https://github.com/mejackreed/Leaflet-IIIF.git
+```
+
+Run the server
+
+```
+$ grunt connect watch
+```
+
+Access the examples at http://127.0.0.1/examples/example.html
+
+### Leaflet-IIIF in the wild
 
 Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server.
 
