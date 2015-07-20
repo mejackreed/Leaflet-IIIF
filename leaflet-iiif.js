@@ -8,7 +8,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   options: {
     continuousWorld: true,
     tileSize: 256,
-    updateWhenIdle: true
+    updateWhenIdle: true,
+    tileFormat: 'jpg'
   },
 
   initialize: function(url, options) {
@@ -31,7 +32,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       maxy = Math.min(miny + tileBaseSize, _this.y);
 
     return L.Util.template(this._baseUrl, L.extend({
-      format: 'jpg',
+      format: _this.options.tileFormat,
       quality: _this.quality,
       region: [minx, miny, (maxx - minx), (maxy - miny)].join(','),
       rotation: 0,

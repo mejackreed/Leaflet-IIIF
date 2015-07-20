@@ -24,6 +24,15 @@ L.tileLayer.iiif('http://example.com/iiifimage.jp2/info.json').addTo(map);
 
 Thanks to [klokantech/iiifviewer](https://github.com/klokantech/iiifviewer) and [turban/Leaflet.Zoomify](https://github.com/turban/Leaflet.Zoomify) who have similar plugins which were used in development of Leaflet-IIIF.
 
+### Options
+
+Leaflet-IIIF extends [L.TileLayer](http://leafletjs.com/reference.html#tilelayer) and so many options available to L.TileLayer can be used with Leaflet-IIIF.
+
+Option | Type | Default | Description
+------ | ---- | ------- | -----------
+`tileFormat` | `String` | `'jpg'` | The [format](http://iiif.io/api/image/2.0/#format) of the returned image.
+`tileSize` | Number | 256 | Tile size (width and height in pixels, assuming tiles are square).
+
 ### Development
 
 Clone the repository
