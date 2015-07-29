@@ -24,7 +24,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       x = coords.x,
       y = (coords.y),
       zoom = _this._map.getZoom(),
-      scale = Math.pow(2, _this.maxZoom - zoom),
+      scale = Math.pow(2, _this.maxNativeZoom - zoom),
       tileBaseSize = _this.options.tileSize * scale,
       minx = (x * tileBaseSize),
       miny = (y * tileBaseSize),
@@ -112,12 +112,20 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           return Math.ceil(Math.log(x) / Math.LN2);
         };
 
-        // Calculates maxZoom for the layer
-        _this.maxZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
+        // Calculates maximum native zoom for the layer
+        _this.maxNativeZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
           ceilLog2(_this.y / _this.options.tileSize));
-
+        
+        // Enable zooming further than native if needed
+        if (_this.options.maxZoom && _this.options.maxZoom > _this.maxNativeZoom) {
+          _this.maxZoom = _this.options.maxZoom;
+        }
+        else {
+          _this.maxZoom = _this.maxNativeZoom;
+        }
+        
         for (var i = 0; i <= _this.maxZoom; i++) {
-          scale = Math.pow(2, _this.maxZoom - i);
+          scale = Math.pow(2, _this.maxNativeZoom - i);
           width_ = Math.ceil(_this.x / scale);
           height_ = Math.ceil(_this.y / scale);
           tilesX_ = Math.ceil(width_ / _this.options.tileSize);
@@ -158,7 +166,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       tolerance = 0.8,
       imageSize;
 
-    for (var i = _this.maxZoom; i >= 0; i--) {
+    for (var i = _this.maxNativeZoom; i >= 0; i--) {
       imageSize = this._imageSizes[i];
       if (imageSize.x * tolerance < mapSize.x && imageSize.y * tolerance < mapSize.y) {
         return i;
