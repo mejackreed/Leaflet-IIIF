@@ -4,6 +4,11 @@ A Leaflet plugin for viewing IIIF images. [See the demo](http://mejackreed.githu
 
 Requires [Leaflet.js](http://leafletjs.com/) and [jQuery](http://jquery.com/)
 
+### Examples
+
+ - [Demo using the IIIF Image API](http://mejackreed.github.io/Leaflet-IIIF/examples/example.html)
+ - [Demo parsing a IIIF manifest](http://mejackreed.github.io/Leaflet-IIIF/examples/manifest.html)
+
 ### Install with Bower
 
 ```
