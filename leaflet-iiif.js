@@ -30,14 +30,31 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       miny = (y * tileBaseSize),
       maxx = Math.min(minx + tileBaseSize, _this.x),
       maxy = Math.min(miny + tileBaseSize, _this.y);
+    
+    var xDiff = (maxx - minx);
+    var yDiff = (maxy - miny);
 
     return L.Util.template(this._baseUrl, L.extend({
       format: _this.options.tileFormat,
       quality: _this.quality,
-      region: [minx, miny, (maxx - minx), (maxy - miny)].join(','),
+      region: [minx, miny, xDiff, yDiff].join(','),
       rotation: 0,
-      size: 'pct:' + (100 / scale)
+      size: _this._iiifSizeParam(Math.ceil(xDiff / scale), Math.ceil(yDiff / scale))
     }, this.options));
+  },
+  /**
+  * Returns a IIIF size parameter based off of the max dimension of
+  * a tile
+  * @param {Number} x - The width of a tile
+  * @param {Number} y - The height of a tile
+  * @returns {String}
+  */
+  _iiifSizeParam: function(x, y) {
+    if (x >= y) {
+      return x + ',';
+    } else {
+      return ',' + y;
+    }
   },
   onAdd: function(map) {
     var _this = this;
