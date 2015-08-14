@@ -1,4 +1,4 @@
-var map, stanfordMlk, apostle, princetonMap, iiifLayers;
+var map, stanfordMlk, apostle, princetonMap, bnf, iiifLayers;
 
 map = L.map('map', {
   center: [0, 0],
@@ -18,10 +18,15 @@ apostle = L.tileLayer.iiif('http://ids.lib.harvard.edu/ids/iiif/25286610/info.js
   attribution: '<a href="http://via.lib.harvard.edu/via/deliver/deepcontentItem?recordId=olvwork576793%2CVIT.BB%3A4906794">Apostle: Anonymous sculptor of Florence, 15th century (1401-1500)</a>'
 });
 
+bnf = L.tileLayer.iiif('http://gallica.bnf.fr/iiif/ark:/12148/btv1b84539771/f1/info.json', {
+  attribution: '<a href="http://gallicalabs.bnf.fr/ark:/12148/btv1b84539771">ManuscritKalîla et Dimna, avec de nombreuses'
+})
+
 iiifLayers = {
   'Martin Luther King Jr. & Joan Baez ...': stanfordMlk,
   'The provinces of New York and N...': princetonMap,
-  'Apostle: Anonymous sculptor of Fl...': apostle
+  'Apostle: Anonymous sculptor of Fl...': apostle,
+  'ManuscritKalîla et Dimna, avec de...': bnf
 };
 
 L.control.layers(iiifLayers).addTo(map);
