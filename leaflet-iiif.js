@@ -1,5 +1,5 @@
 /*
- * Leaflet-IIIF 0.0.6
+ * Leaflet-IIIF 0.0.7
  * IIIF Viewer for Leaflet
  * by Jack Reed, @mejackreed
  */
