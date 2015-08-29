@@ -13,6 +13,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
 
   initialize: function(url, options) {
+    if (options.maxZoom) {
+      this._customMaxZoom = true;
+    }
     options = L.setOptions(this, options);
     this._infoDeferred = new $.Deferred();
     this._infoUrl = url;
@@ -133,8 +136,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         _this.maxNativeZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
           ceilLog2(_this.y / _this.options.tileSize));
         
-        // Enable zooming further than native if needed
-        if (_this.options.maxZoom && _this.options.maxZoom > _this.maxNativeZoom) {
+        // Enable zooming further than native if maxZoom option supplied
+        if (_this._customMaxZoom && _this.options.maxZoom > _this.maxNativeZoom) {
           _this.maxZoom = _this.options.maxZoom;
         }
         else {
