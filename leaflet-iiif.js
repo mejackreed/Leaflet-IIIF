@@ -16,6 +16,12 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     if (options.maxZoom) {
       this._customMaxZoom = true;
     }
+
+    // Check for explicit tileSize set
+    if (options.tileSize) {
+      this._explicitTileSize = true;
+    }
+
     options = L.setOptions(this, options);
     this._infoDeferred = new $.Deferred();
     this._infoUrl = url;
@@ -126,6 +132,17 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           case /^http:\/\/iiif.io\/api\/image\/2.*$/.test(profile):
             _this.quality = 'default';
             break;
+        }
+
+        // Unless an explicit tileSize is set, use a preferred tileSize
+        if (!_this.explicitTileSize) {
+          if (data.tiles) {
+            // Image API 2.0 Case
+            _this.options.tileSize = data.tiles[0].width;
+          } else if (data.tile_width){
+            // Image API 1.1 Case
+            _this.options.tileSize = data.tile_width;
+          }
         }
 
         ceilLog2 = function(x) {
