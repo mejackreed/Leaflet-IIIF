@@ -13,6 +13,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
 
   initialize: function(url, options) {
+    options = typeof options !== 'undefined' ? options : {};
+
     if (options.maxZoom) {
       this._customMaxZoom = true;
     }
