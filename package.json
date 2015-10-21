@@ -1,6 +1,6 @@
 {
   "name": "leaflet-iiif",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "A Leaflet plugin for viewing IIIF sources",
   "main": "leaflet-iiif.js",
   "directories": {
