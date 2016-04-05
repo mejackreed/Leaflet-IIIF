@@ -16,7 +16,15 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       './../node_modules/leaflet/dist/leaflet.js',
-      './**/*.js'
+      './../node_modules/jquery/dist/jquery.js',
+      './../leaflet-iiif.js',
+      './**/*.js',
+      {
+        pattern: './fixtures/*.json',
+        watched: true,
+        served:  true,
+        included: false,
+      }
     ],
 
 
