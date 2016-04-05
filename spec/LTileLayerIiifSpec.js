@@ -13,7 +13,28 @@ describe('L.TileLayer.Iiif', function() {
     map = L.map(div);
   });
 
+  afterEach(function() {
+    document.body.removeChild(div);
+  });
+
+  function iiifLayerFactory(options) {
+    return L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk_info.json', options || {});
+  }
+
   it('initializes the map', function(){
     expect(typeof (map)).toEqual('object');
+  });
+
+  describe('fitBounds', function() {
+    var iiifLayer;
+
+    beforeEach(function() {
+      iiifLayer = iiifLayerFactory();
+    });
+
+    it('by default is on', function() {
+      expect(iiifLayer.options.fitBounds).toBe(true);
+      map.addLayer(iiifLayer);
+    });
   });
 });
