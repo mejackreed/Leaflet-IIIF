@@ -46,13 +46,19 @@ Clone the repository
 $ git clone https://github.com/mejackreed/Leaflet-IIIF.git
 ```
 
+Install the dependencies
+
+```
+$ npm install
+```
+
 Run the server
 
 ```
-$ grunt connect watch
+$ npm start
 ```
 
-Access the examples at http://127.0.0.1/examples/example.html
+Access the examples at http://127.0.0.1:8080/examples/example.html
 
 ### Leaflet-IIIF in the wild
 
