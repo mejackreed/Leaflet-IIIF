@@ -29,6 +29,7 @@
   "devDependencies": {
     "http-server": "^0.9.0",
     "jasmine": "^2.4.1",
+    "jquery": "^2.2.2",
     "karma": "^0.13.22",
     "karma-jasmine": "^0.3.7",
     "karma-phantomjs-launcher": "^1.0.0",
