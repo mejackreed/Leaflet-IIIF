@@ -37,6 +37,7 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 `tileFormat` | `String` | `'jpg'` | The [format](http://iiif.io/api/image/2.0/#format) of the returned image.
 `tileSize` | Number | 256 | Tile size (width and height in pixels, assuming tiles are square).
+`fitBounds` | Boolean | true | Automatically center and fit the maps bounds to the added IIIF layer
 
 ### Development
 
@@ -46,13 +47,19 @@ Clone the repository
 $ git clone https://github.com/mejackreed/Leaflet-IIIF.git
 ```
 
+Install the dependencies
+
+```
+$ npm install
+```
+
 Run the server
 
 ```
-$ grunt connect watch
+$ npm start
 ```
 
-Access the examples at http://127.0.0.1/examples/example.html
+Access the examples at http://127.0.0.1:8080/examples/example.html
 
 ### Leaflet-IIIF in the wild
 

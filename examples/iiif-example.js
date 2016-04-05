@@ -20,7 +20,8 @@ apostle = L.tileLayer.iiif('http://ids.lib.harvard.edu/ids/iiif/25286610/info.js
 });
 
 bnf = L.tileLayer.iiif('http://gallica.bnf.fr/iiif/ark:/12148/btv1b84539771/f1/info.json', {
-  attribution: '<a href="http://gallicalabs.bnf.fr/ark:/12148/btv1b84539771">ManuscritKalîla et Dimna, avec de nombreuses'
+  attribution: '<a href="http://gallicalabs.bnf.fr/ark:/12148/btv1b84539771">ManuscritKalîla et Dimna, avec de nombreuses',
+  fitBounds: false
 })
 
 iiifLayers = {

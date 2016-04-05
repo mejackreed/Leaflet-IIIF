@@ -9,7 +9,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     continuousWorld: true,
     tileSize: 256,
     updateWhenIdle: true,
-    tileFormat: 'jpg'
+    tileFormat: 'jpg',
+    fitBounds: true
   },
 
   initialize: function(url, options) {
@@ -73,20 +74,15 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Wait for deferred to complete
     $.when(_this._infoDeferred).done(function() {
 
-      // Find best zoom level and center map
-      var initialZoom = _this._getInitialZoom(map.getSize()),
-        imageSize = _this._imageSizes[initialZoom],
-        sw = map.options.crs.pointToLatLng(L.point(0, imageSize.y), initialZoom),
-        ne = map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom),
-        bounds = L.latLngBounds(sw, ne);
-
-      map.fitBounds(bounds, true);
-
       // Set maxZoom for map
       map._layersMaxZoom = _this.maxZoom;
 
       // Call add TileLayer
       L.TileLayer.prototype.onAdd.call(_this, map);
+
+      if (_this.options.fitBounds) {
+        _this._fitBounds();
+      }
 
       // Reset tile sizes to handle non 256x256 IIIF tiles
       _this.on('tileload', function(tile, url) {
@@ -102,6 +98,18 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
       });
     });
+  },
+  _fitBounds: function() {
+    var _this = this;
+
+    // Find best zoom level and center map
+    var initialZoom = _this._getInitialZoom(map.getSize());
+    var imageSize = _this._imageSizes[initialZoom];
+    var sw = map.options.crs.pointToLatLng(L.point(0, imageSize.y), initialZoom);
+    var ne = map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom);
+    var bounds = L.latLngBounds(sw, ne);
+
+    map.fitBounds(bounds, true);
   },
   _getInfo: function() {
     var _this = this;
