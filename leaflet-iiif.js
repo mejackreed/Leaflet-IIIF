@@ -103,13 +103,13 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var _this = this;
 
     // Find best zoom level and center map
-    var initialZoom = _this._getInitialZoom(map.getSize());
+    var initialZoom = _this._getInitialZoom(_this._map.getSize());
     var imageSize = _this._imageSizes[initialZoom];
-    var sw = map.options.crs.pointToLatLng(L.point(0, imageSize.y), initialZoom);
-    var ne = map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom);
+    var sw = _this._map.options.crs.pointToLatLng(L.point(0, imageSize.y), initialZoom);
+    var ne = _this._map.options.crs.pointToLatLng(L.point(imageSize.x, 0), initialZoom);
     var bounds = L.latLngBounds(sw, ne);
 
-    map.fitBounds(bounds, true);
+    _this._map.fitBounds(bounds, true);
   },
   _getInfo: function() {
     var _this = this;
