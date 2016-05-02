@@ -1,0 +1,23 @@
+{
+  "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json",
+  "@id": "http://ids.lib.harvard.edu/ids/iiif/25286610",
+  "width": 4132,
+  "height": 8176,
+  "scale_factors": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "tile_width": 1024,
+  "tile_height": 1024,
+  "formats": [
+    "jpg"
+  ],
+  "qualities": [
+    "native"
+  ],
+  "profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level1"
+}
