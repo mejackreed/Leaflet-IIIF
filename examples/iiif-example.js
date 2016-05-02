@@ -22,13 +22,19 @@ apostle = L.tileLayer.iiif('http://ids.lib.harvard.edu/ids/iiif/25286610/info.js
 bnf = L.tileLayer.iiif('http://gallica.bnf.fr/iiif/ark:/12148/btv1b84539771/f1/info.json', {
   attribution: '<a href="http://gallicalabs.bnf.fr/ark:/12148/btv1b84539771">ManuscritKalîla et Dimna, avec de nombreuses',
   fitBounds: false
-})
+});
+
+acrobata = L.tileLayer.iiif('http://libimages.princeton.edu/loris2/pudl0033/2007/04003/00000001.jp2/info.json', {
+  attribution: '<a href="http://pudl.princeton.edu/objects/pz50gw22j">Acrobata Marroquí - Lorenzo Homar</a>',
+  quality: 'gray'
+});
 
 iiifLayers = {
   'Martin Luther King Jr. & Joan Baez ...': stanfordMlk,
   'The provinces of New York and N...': princetonMap,
   'Apostle: Anonymous sculptor of Fl...': apostle,
-  'ManuscritKalîla et Dimna, avec de...': bnf
+  'ManuscritKalîla et Dimna, avec de...': bnf,
+  'Acrobata Marroquí': acrobata
 };
 
 L.control.layers(iiifLayers).addTo(map);

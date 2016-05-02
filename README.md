@@ -38,6 +38,7 @@ Option | Type | Default | Description
 `tileFormat` | `String` | `'jpg'` | The [format](http://iiif.io/api/image/2.0/#format) of the returned image.
 `tileSize` | Number | 256 | Tile size (width and height in pixels, assuming tiles are square).
 `fitBounds` | Boolean | true | Automatically center and fit the maps bounds to the added IIIF layer
+`quality` | String | 'default' | [determines whether the image is delivered in color, grayscale or black and white](http://iiif.io/api/image/2.0/#quality) _Note:_ All IIIF servers do not support this parameter.
 
 ### Development
 
