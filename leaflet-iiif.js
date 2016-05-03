@@ -120,8 +120,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         _this.y = data.height;
         _this.x = data.width;
 
-        var profile,
-          tierSizes = [],
+        var tierSizes = [],
           imageSizes = [],
           scale,
           width_,
@@ -131,18 +130,12 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         // Set quality based off of IIIF version
         if (data.profile instanceof Array) {
-          profile = data.profile[0];
+          _this.profile = data.profile[0];
         }else {
-          profile = data.profile;
+          _this.profile = data.profile;
         }
-        switch (true) {
-          case /^http:\/\/library.stanford.edu\/iiif\/image-api\/1.1\/compliance.html.*$/.test(profile):
-            _this.quality = 'native';
-            break;
-          case /^http:\/\/iiif.io\/api\/image\/2.*$/.test(profile):
-            _this.quality = 'default';
-            break;
-        }
+
+        _this._setQuality();
 
         // Unless an explicit tileSize is set, use a preferred tileSize
         if (!_this.explicitTileSize) {
@@ -188,6 +181,26 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         _this._infoDeferred.resolve();
       });
   },
+
+  _setQuality: function() {
+    var _this = this;
+
+    // Quality already specified by consumer
+    if (_this.options.quality) {
+      return;
+    }
+
+    // Set the quality based on the IIIF compliance level
+    switch (true) {
+      case /^http:\/\/library.stanford.edu\/iiif\/image-api\/1.1\/compliance.html.*$/.test(_this.profile):
+        _this.options.quality = 'native';
+        break;
+      case /^http:\/\/iiif.io\/api\/image\/2.*$/.test(_this.profile):
+        _this.options.quality = 'default';
+        break;
+    }
+  },
+
   _infoToBaseUrl: function() {
     return this._infoUrl.replace('info.json', '');
   },

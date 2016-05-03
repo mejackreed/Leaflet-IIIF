@@ -1,0 +1,80 @@
+{
+  "profile": [
+    "http://iiif.io/api/image/2/level2.json",
+    {
+      "supports": [
+        "canonicalLinkHeader",
+        "profileLinkHeader",
+        "mirroring",
+        "rotationArbitrary",
+        "sizeAboveFull"
+      ],
+      "qualities": [
+        "default",
+        "bitonal",
+        "gray",
+        "color"
+      ],
+      "formats": [
+        "jpg",
+        "png",
+        "gif",
+        "webp"
+      ]
+    }
+  ],
+  "tiles": [
+    {
+      "width": 1024,
+      "scaleFactors": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ]
+    }
+  ],
+  "protocol": "http://iiif.io/api/image",
+  "sizes": [
+    {
+      "width": 44,
+      "height": 57
+    },
+    {
+      "width": 88,
+      "height": 113
+    },
+    {
+      "width": 175,
+      "height": 225
+    },
+    {
+      "width": 350,
+      "height": 450
+    },
+    {
+      "width": 700,
+      "height": 900
+    },
+    {
+      "width": 1399,
+      "height": 1800
+    },
+    {
+      "width": 2797,
+      "height": 3600
+    },
+    {
+      "width": 5594,
+      "height": 7200
+    }
+  ],
+  "height": 7200,
+  "width": 5594,
+  "@context": "http://iiif.io/api/image/2/context.json",
+  "@id": "http://libimages.princeton.edu/loris2/pudl0033%2F2007%2F04003%2F00000001.jp2"
+}

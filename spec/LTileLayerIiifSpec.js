@@ -57,4 +57,36 @@ describe('L.TileLayer.Iiif', function() {
       });
     });
   });
+
+  describe('quality', function() {
+    var iiifLayer;
+
+    it('by default is on', function(done) {
+      iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/acrobat_info.json');
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.quality).toBe('default');
+        done();
+      });
+    });
+
+    it('can be specified', function(done) {
+      iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/acrobat_info.json', {
+        quality: 'gray'
+      });
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.quality).toBe('gray');
+        done();
+      });
+    });
+
+    it('for a 1.1 compliance', function() {
+      iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/statue_info.json');
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.quality).toBe('native');
+        done();
+      });
+    });
+  });
 });
