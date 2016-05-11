@@ -62,6 +62,16 @@ $ npm start
 
 Access the examples at http://127.0.0.1:8080/examples/example.html
 
+### Leaflet-IIIF Examples
+
+ - [Leaflet-IIIF Basic Example](http://bl.ocks.org/mejackreed/b0aba2ff6f5a54f197767313fbc5a26e)
+ - [Leaflet-IIIF Side by Side using IIIF Quality](http://bl.ocks.org/mejackreed/80c4248278517475a30190b427cb5c9c)
+ - [Leaflet-IIIF Martellus Map example using IconLayers plugin](http://bl.ocks.org/mejackreed/6e3fb8e69189dadb4be7d0926a6a14a5)
+ - [Leaflet-IIIF Magnifying Glass Example](http://bl.ocks.org/mejackreed/f3904b28bb99abea32951f04ce6eb4cd)
+ - [Leaflet-IIIF Draw example](http://bl.ocks.org/mejackreed/462e89092ce71ae7dd09e6074d60f2e0)
+ - [Leaflet-IIIF Labels example](http://bl.ocks.org/mejackreed/68092c44c95ef31fefcfe6f683116f77)
+ - [Leaflet-IIIF Annotation Example](http://bl.ocks.org/mejackreed/2724146adfe91233c74120b9056fba06)
+
 ### Leaflet-IIIF in the wild
 
 Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server.
