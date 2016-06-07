@@ -25,6 +25,12 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       this._explicitTileSize = true;
     }
 
+    if (typeof options.tileProxyPath !== 'undefined') {
+      this.tileProxyPath = options.tileProxyPath;
+    } else {
+      this.tileProxyPath = null;
+    }
+
     options = L.setOptions(this, options);
     this._infoDeferred = new $.Deferred();
     this._infoUrl = url;
@@ -202,6 +208,10 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   },
 
   _infoToBaseUrl: function() {
+    if (this.tileProxyPath !== null) {
+      return this.tileProxyPath;
+    }
+
     return this._infoUrl.replace('info.json', '');
   },
   _templateUrl: function() {
