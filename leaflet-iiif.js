@@ -10,7 +10,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     tileSize: 256,
     updateWhenIdle: true,
     tileFormat: 'jpg',
-    fitBounds: true
+    fitBounds: true,
+    errorHandler: undefined
   },
 
   initialize: function(url, options) {
@@ -23,6 +24,10 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Check for explicit tileSize set
     if (options.tileSize) {
       this._explicitTileSize = true;
+    }
+
+    if (options.errorHandler) {
+      this._errorHandler = options.errorHandler;
     }
 
     options = L.setOptions(this, options);
@@ -117,6 +122,12 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Look for a way to do this without jQuery
     $.getJSON(_this._infoUrl)
       .done(function(data) {
+        if ((data === null || data === undefined || $.isEmptyObject(data))
+            && _this._errorHandler !== undefined) {
+          _this._errorHandler();
+          throw new Error('The server returned no data to process');
+        }
+
         _this.y = data.height;
         _this.x = data.width;
 

@@ -27,6 +27,17 @@ var map = L.map('map', {
 L.tileLayer.iiif('http://example.com/iiifimage.jp2/info.json').addTo(map);
 ```
 
+### With error handler option (Passing in your own custom function, as below)
+
+```
+function errorHandler() {
+  $('#viewer').removeClass("not_loaded").height("30px")
+     .html("<div class='error'>Sorry, an error occurred while loading the image.</div>");
+}
+
+L.tileLayer.iiif('http://example.com/iiifimage.jp2/info.json', {errorHandler: errorHandler}).addTo(map);
+```
+
 Thanks to [klokantech/iiifviewer](https://github.com/klokantech/iiifviewer) and [turban/Leaflet.Zoomify](https://github.com/turban/Leaflet.Zoomify) who have similar plugins which were used in development of Leaflet-IIIF.
 
 ### Options
