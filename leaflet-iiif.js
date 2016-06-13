@@ -125,7 +125,6 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         if ((data === null || data === undefined || $.isEmptyObject(data))
             && _this._errorHandler !== undefined) {
           _this._errorHandler();
-          throw new Error('The server returned no data to process');
         }
 
         _this.y = data.height;
