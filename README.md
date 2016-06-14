@@ -60,6 +60,12 @@ Run the server
 $ npm start
 ```
 
+Run the test suite
+
+```
+$ npm test
+```
+
 Access the examples at http://127.0.0.1:8080/examples/example.html
 
 ### Leaflet-IIIF Examples
