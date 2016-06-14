@@ -29,6 +29,48 @@ describe('L.TileLayer.Iiif', function() {
     expect(typeof (map)).toEqual('object');
   });
 
+  describe('handles data requests', function() {
+    var errorHandler = {
+      errorHandler: function() {
+        return true;
+      },
+      run: function(vals) {
+        var isEmptyObject = Object.keys(vals).length === 0 && vals.constructor === Object;
+        if(vals === null || typeof vals === 'undefined' || isEmptyObject) {
+          this.errorHandler();
+        }
+      }
+    };
+    var iiifLayer, errors, empty, full;
+
+    beforeEach(function() {
+      errors = spyOn(errorHandler, 'errorHandler');
+    });
+
+    it('handles empty data requests', function(done) {
+     empty =  errorHandler.run({});
+     iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk_info.json', errorHandler);
+     map.addLayer(iiifLayer);
+
+     iiifLayer.on('load', function() {
+       expect(typeof iiifLayer.options.errorHandler).toBe('function');
+       expect(errors).toHaveBeenCalled();
+       done();
+     });
+    });
+
+    it('it ignores populated data requests', function(done) {
+      full =  errorHandler.run({data: 7});
+      iiifLayer = iiifLayerFactory(errorHandler);
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(typeof iiifLayer.options.errorHandler).toBe('function');
+        expect(errors).not.toHaveBeenCalled();
+        done();
+      });
+    });
+  });
+
   describe('fitBounds', function() {
     var iiifLayer;
 
