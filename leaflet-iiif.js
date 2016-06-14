@@ -122,9 +122,12 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Look for a way to do this without jQuery
     $.getJSON(_this._infoUrl)
       .done(function(data) {
-        if ((data === null || data === undefined || $.isEmptyObject(data))
-            && _this._errorHandler !== undefined) {
-          _this._errorHandler();
+        if (data === null || data === undefined || $.isEmptyObject(data)) {
+          if (_this._errorHandler !== undefined) {
+              _this._errorHandler();
+          }
+
+          throw new Error('The server returned no data to process');
         }
 
         _this.y = data.height;
