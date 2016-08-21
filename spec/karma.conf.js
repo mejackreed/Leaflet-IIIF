@@ -20,7 +20,7 @@ module.exports = function(config) {
       './../leaflet-iiif.js',
       './**/*.js',
       {
-        pattern: './fixtures/*.json',
+        pattern: './fixtures/**/*.json',
         watched: true,
         served:  true,
         included: false,

@@ -22,11 +22,42 @@ describe('L.TileLayer.Iiif', function() {
   });
 
   function iiifLayerFactory(options) {
-    return L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk_info.json', options || {});
+    return L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk/info.json', options || {});
   }
 
   it('initializes the map', function(){
     expect(typeof (map)).toEqual('object');
+  });
+  
+  describe('generated tile urls', function() {
+    var iiifLayer;
+    
+    beforeEach(function() {
+      iiifLayer = iiifLayerFactory();
+    });
+
+    // Cribbed from Leaflet https://github.com/Leaflet/Leaflet/blob/master/spec/suites/layer/tile/TileLayerSpec.js#L302-L309
+    function eachImg(layer, callback) {
+      var imgtags = layer._container.children[0].children;
+      for (var i in imgtags) {
+        if (imgtags[i].tagName === 'IMG') {
+          callback(imgtags[i]);
+        }
+      }
+    }
+
+    // http://iiif.io/api/image/2.1/#canonical-uri-syntax
+    it('generates a canonical url', function(done) {
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        var i = 0;
+        eachImg(iiifLayer, function (img) {
+          expect(img.src).toBe('http://localhost:9876/base/fixtures/mlk/0,0,5426,3820/679,/0/default.jpg')
+          i++;
+        });
+        done();
+      })
+    })
   });
 
   describe('fitBounds', function() {
