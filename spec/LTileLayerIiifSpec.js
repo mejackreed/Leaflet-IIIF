@@ -81,8 +81,9 @@ describe('L.TileLayer.Iiif', function() {
       });
     });
 
-    it('for a 1.1 compliance', function() {
+    it('for a 1.1 compliance', function(done) {
       iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/statue_info.json');
+      map.addLayer(iiifLayer);
       iiifLayer.on('load', function() {
         expect(iiifLayer.options.quality).toBe('native');
         done();
