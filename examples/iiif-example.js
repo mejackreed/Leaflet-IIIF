@@ -29,12 +29,15 @@ acrobata = L.tileLayer.iiif('http://libimages.princeton.edu/loris2/pudl0033/2007
   quality: 'gray'
 });
 
+staticTiles = L.tileLayer.iiif('http://evil-manifests.davidnewbury.com/iiif/images/garden-1/info.json');
+
 iiifLayers = {
   'Martin Luther King Jr. & Joan Baez ...': stanfordMlk,
   'The provinces of New York and N...': princetonMap,
   'Apostle: Anonymous sculptor of Fl...': apostle,
   'ManuscritKalîla et Dimna, avec de...': bnf,
-  'Acrobata Marroquí': acrobata
+  'Acrobata Marroquí': acrobata,
+  'A static tile source': staticTiles
 };
 
 L.control.layers(iiifLayers).addTo(map);
