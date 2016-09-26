@@ -1,5 +1,5 @@
 /*
- * Leaflet-IIIF 0.2.0
+ * Leaflet-IIIF 0.2.1
  * IIIF Viewer for Leaflet
  * by Jack Reed, @mejackreed
  */
@@ -100,9 +100,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   _getInfo: function() {
     var _this = this;
 
-    // Look for a way to do this without jQuery
-    $.getJSON(_this._infoUrl)
-      .done(function(data) {
+    var onsuccess = function(data){
         _this.y = data.height;
         _this.x = data.width;
 
@@ -165,7 +163,66 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         // Resolved Deferred to initiate tilelayer load
         _this._infoDeferred.resolve();
-      });
+      };
+
+      var onload = function(rsp){
+
+                var target = rsp.target;
+
+                if (target.readyState != 4){
+                    return;
+                }
+
+                var status_code = target['status'];
+                var status_text = target['statusText'];
+
+                var raw = target['responseText'];
+                var data = undefined;
+
+                try {
+                    data = JSON.parse(raw);
+                }
+
+                catch (e){
+
+                    console.log("Failed to parse JSON, because " + e);
+		    console.log(raw);
+                    return false;
+                }
+
+	  onsuccess(data);
+      };
+
+      var onprocess = function(){
+	  // pass
+      };
+
+      var onfailed = function(rsp){
+	  console.log("XHR failed, because " + rsp);
+      };
+
+      var onabort = function(){
+	  console.log("XHR aborted");
+      };
+
+      try {
+
+	  var endpoint = _this._infoUrl;
+          var req = new XMLHttpRequest();
+
+          req.addEventListener("load", onload);
+          req.addEventListener("progress", onprogress);
+          req.addEventListener("error", onfailed);
+	  req.addEventListener("abort", onabort);
+
+          req.open("GET", endpoint, true);
+	  req.send();
+
+      } catch (e) {
+
+	  console.log("XHR failed, because " + e);
+          return false;
+      }
   },
 
   _setQuality: function() {
