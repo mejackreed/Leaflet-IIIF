@@ -193,7 +193,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 	  onsuccess(data);
       };
 
-      var onprocess = function(){
+      var onprogress = function(){
 	  // pass
       };
 
