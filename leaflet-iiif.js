@@ -51,7 +51,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       quality: _this.quality,
       region: [minx, miny, xDiff, yDiff].join(','),
       rotation: 0,
-      size: Math.ceil(xDiff / scale) + ','
+      size: (xDiff > yDiff ? Math.ceil(xDiff / scale) + ',' : ',' + Math.ceil(yDiff / scale))
     }, this.options));
   },
   onAdd: function(map) {
