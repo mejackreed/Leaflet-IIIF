@@ -33,7 +33,7 @@
     "karma": "^0.13.22",
     "karma-jasmine": "^0.3.7",
     "karma-phantomjs-launcher": "^1.0.0",
-    "leaflet": "^0.7.7",
+    "leaflet": "^1.0",
     "phantomjs-prebuilt": "^2.1.5"
   }
 }
