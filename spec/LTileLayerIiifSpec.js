@@ -67,6 +67,10 @@ describe('L.TileLayer.Iiif', function() {
       iiifLayer = iiifLayerFactory();
     });
 
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
+
     it('by default is on', function(done) {
       map.addLayer(iiifLayer);
       iiifLayer.on('load', function() {
@@ -91,6 +95,10 @@ describe('L.TileLayer.Iiif', function() {
 
   describe('quality', function() {
     var iiifLayer;
+    
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
 
     it('by default is on', function(done) {
       iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/acrobat_info.json');
