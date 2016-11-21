@@ -1,11 +1,14 @@
 {
   "name": "leaflet-iiif",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Leaflet plugin for viewing IIIF sources",
   "main": "leaflet-iiif.js",
   "directories": {
     "example": "examples"
   },
+  "files": [
+    "leaflet-iiif.js"
+  ],
   "scripts": {
     "test": "./node_modules/.bin/karma start ./spec/karma.conf.js",
     "start": "./node_modules/.bin/http-server"
