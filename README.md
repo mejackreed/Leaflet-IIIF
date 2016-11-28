@@ -92,4 +92,4 @@ Access the examples at http://127.0.0.1:8080/examples/example.html
  - Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server. [http://rbsc.princeton.edu/versailles/map](http://rbsc.princeton.edu/versailles/map)
  - [GeoBlacklight](http://geoblacklight.org/) uses Leaflet-IIIF as the IIIF viewing client for viewing images.
  - [Fulcrum.org](https://www.fulcrum.org/) uses Leaflet-IIIF for viewing image resources. See it in action [https://www.fulcrum.org/concern/file_sets/s7526c42w](https://www.fulcrum.org/concern/file_sets/s7526c42w)
- - [Digital Typhoon: Himawari-8 Clipping](http://agora.ex.nii.ac.jp/digital-typhoon/himawari-3g/clipping/index.html.en) uses Leaflet-IIIF allowing users to clip sections from a large resolution satelite image.
+ - [Digital Typhoon: Himawari-8 Clipping](http://agora.ex.nii.ac.jp/digital-typhoon/himawari-3g/clipping/index.html.en) uses Leaflet-IIIF allowing users to clip sections from a large resolution satellite image.
