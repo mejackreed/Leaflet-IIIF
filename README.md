@@ -84,9 +84,11 @@ Access the examples at http://127.0.0.1:8080/examples/example.html
  - [Leaflet-IIIF Draw example](http://bl.ocks.org/mejackreed/462e89092ce71ae7dd09e6074d60f2e0)
  - [Leaflet-IIIF Labels example](http://bl.ocks.org/mejackreed/68092c44c95ef31fefcfe6f683116f77)
  - [Leaflet-IIIF Annotation Example](http://bl.ocks.org/mejackreed/2724146adfe91233c74120b9056fba06)
+ - [Leaflet-IIIF Cropper example](https://bl.ocks.org/mejackreed/6936585f435b60aa9451ae2bc1c199f2)
 
 ### Leaflet-IIIF in the wild
 
-Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server.
-
-[http://rbsc.princeton.edu/versailles/map](http://rbsc.princeton.edu/versailles/map)
+ - Europeana uses Leaflet-IIIF for viewing image content. See more about how they do this ["Building a rich media experience with the Europeana API and IIIF"](http://labs.europeana.eu/blog/building-a-rich-media-experience-with-the-europeana-api-and-iiif) and an example at [http://www.europeana.eu/portal/en/record/9200211/en_list_one_vad_0342.html](http://www.europeana.eu/portal/en/record/9200211/en_list_one_vad_0342.html)
+ - Princeton Libraries used Leaflet-IIIF for its ["Plan of Versailles"](Plan of Versailles) map. This implementation uses GeoJSON annotation to annotate the map being served out by a IIIF server. [http://rbsc.princeton.edu/versailles/map](http://rbsc.princeton.edu/versailles/map)
+ - [GeoBlacklight](http://geoblacklight.org/) uses Leaflet-IIIF as the IIIF viewing client for viewing images.
+ - [Fulcrum.org](https://www.fulcrum.org/) uses Leaflet-IIIF for viewing image resources. See it in action [https://www.fulcrum.org/concern/file_sets/s7526c42w](https://www.fulcrum.org/concern/file_sets/s7526c42w)
