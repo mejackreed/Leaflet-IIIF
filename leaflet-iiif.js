@@ -124,7 +124,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         _this._setQuality();
 
         // Unless an explicit tileSize is set, use a preferred tileSize
-        if (!_this.explicitTileSize) {
+        if (!_this._explicitTileSize) {
+          // Set the default first
+          _this.options.tileSize = 256;
           if (data.tiles) {
             // Image API 2.0 Case
             _this.options.tileSize = data.tiles[0].width;
