@@ -129,4 +129,52 @@ describe('L.TileLayer.Iiif', function() {
       });
     });
   });
+
+  describe('tileSize', function() {
+    var iiifLayer;
+    
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
+    
+    describe('when not specified', function() {
+      it('uses the tileSize from info.json v2', function(done) {
+        iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk/info.json');
+        map.addLayer(iiifLayer);
+        iiifLayer.on('load', function() {
+          expect(iiifLayer.options.tileSize).toBe(1024);
+          done();
+        });
+      });
+      it('uses the tileSize from info.json v1', function(done) {
+        iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/statue_info.json');
+        map.addLayer(iiifLayer);
+        iiifLayer.on('load', function() {
+          expect(iiifLayer.options.tileSize).toBe(1024);
+          done();
+        });
+      });
+      it('uses default tileSize (not specified in info.json)', function(done) {
+        iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/edge_case/info.json');
+        map.addLayer(iiifLayer);
+        iiifLayer.on('load', function() {
+          expect(iiifLayer.options.tileSize).toBe(256);
+          done();
+        });
+      });
+    });
+    describe('when specified', function() {
+      it('uses the explicitly defined one', function(done) {
+        iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/mlk/info.json', {
+          tileSize: 512 
+        });
+        map.addLayer(iiifLayer);
+        iiifLayer.on('load', function() {
+          expect(iiifLayer.options.tileSize).toBe(512);
+          done();
+        });
+      });
+    });
+    
+  });
 });
