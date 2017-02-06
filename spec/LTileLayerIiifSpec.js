@@ -128,6 +128,15 @@ describe('L.TileLayer.Iiif', function() {
         done();
       });
     });
+
+    it('when a profile object is given', function(done) {
+      iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/profile_object/info.json');
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.quality).toBe('default');
+        done();
+      });
+    });
   });
 
   describe('tileSize', function() {

@@ -1,0 +1,86 @@
+{
+  "profile" : {
+    "formats" : [ "jpg" ],
+    "qualities" : [ "default" ],
+    "supports" : [ "regionByPx", "rotationBy90s", "sizeByH", "sizeByW", "sizeByWh" ],
+    "@context" : "http://iiif.io/api/image/2/context.json",
+    "@id" : "http://iiif.io/api/image/2/level2.json"
+  },
+  "height" : 4692,
+  "width" : 7384,
+  "protocol" : "http://iiif.io/api/image",
+  "tiles" : [ {
+    "width" : 750,
+    "height" : 750,
+    "scaleFactors" : [ 1, 2, 4, 8, 16 ]
+  } ],
+  "metadata" : [ {
+    "label" : "Work Record ID",
+    "value" : "<span>0057514</span>"
+  }, {
+    "label" : "Licence",
+    "value" : "<span><a href = \"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\"><img src = \"http://lac-luna-live4.is.ed.ac.uk:8181/graphics/by.jpg\"/></a></span>"
+  }, {
+    "label" : "Shelfmark",
+    "value" : "<span>La.III.804</span>"
+  }, {
+    "label" : "Holding Institution",
+    "value" : "<span>University of Edinburgh</span>"
+  }, {
+    "label" : "Title",
+    "value" : "<span>A Compleat Theory of the Scots Highland Bagpipe</span>"
+  }, {
+    "label" : "Subset Index",
+    "value" : "<span>f.1r</span>"
+  }, {
+    "label" : "Creator",
+    "value" : "<span>MacDonald, Joseph</span>"
+  }, {
+    "label" : "Date",
+    "value" : "<span>1760</span>"
+  }, {
+    "label" : "Description",
+    "value" : "<span>Coming from a musical family, Joseph MacDonald followed in the footsteps of his mother and father. Becoming frustrated with his music at an early age, MacDonald joined the East India Company and was off to sea, where he still wrote of the music of his home. While in the cabin, he wrote his manuscript for the Compleat Theory of the Scots Highland Bagpipes. Unfortunately, this manuscript was lost at sea on his journey and not long after MacDonald himself died from a contracted fever. It wasn't until 20 years after his year, in 1784, did a portion of the manuscript reappear in India. This manuscript was then passed along to Joseph’s brother, Patrick, who brought his brother's last work to be published.</span>"
+  }, {
+    "label" : "Subject Category",
+    "value" : "<span>Music</span>"
+  }, {
+    "label" : "Related Work Title",
+    "value" : "<span>A Compleat Theory of the Scots Highland Bagpipe</span>"
+  }, {
+    "label" : "Related Work Page No",
+    "value" : "<span>f.1r</span>"
+  }, {
+    "label" : "Rights Statement",
+    "value" : "<span>Copyright unknown, orphan work.</span>"
+  }, {
+    "label" : "Provenance Notes",
+    "value" : "<span>Believed to have belonged to Lord Eldin</span>"
+  }, {
+    "label" : "Tag",
+    "value" : "<span>Scotland</span>"
+  }, {
+    "label" : "Tag",
+    "value" : "<span>Bagpipes</span>"
+  }, {
+    "label" : "Tag",
+    "value" : "<span>East India Company</span>"
+  }, {
+    "label" : "Tag",
+    "value" : "<span>Music</span>"
+  }, {
+    "label" : "Repro File Type",
+    "value" : "<span>Cropped TIFF</span>"
+  }, {
+    "label" : "Repro Title",
+    "value" : "<span>A Compleat Theory of the Scots Highland Bagpipe, f.1r</span>"
+  }, {
+    "label" : "Repro Rights Statement",
+    "value" : "<span>Copyright The University of Edinburgh.</span>"
+  }, {
+    "label" : "Repro Publication Status",
+    "value" : "<span>Full Public Access</span>"
+  } ],
+  "@context" : "http://iiif.io/api/image/2/context.json",
+  "@id" : "http://images.is.ed.ac.uk/luna/servlet/iiif/UoEwmm~2~2~77099~164515"
+}

@@ -1,4 +1,4 @@
-var map, stanfordMlk, apostle, princetonMap, bnf, iiifLayers;
+var map, stanfordMlk, apostle, princetonMap, bnf, iiifLayers, scottlandBagpipe;
 
 map = L.map('map', {
   center: [0, 0],
@@ -29,6 +29,8 @@ acrobata = L.tileLayer.iiif('http://libimages.princeton.edu/loris2/pudl0033/2007
   quality: 'gray'
 });
 
+scottlandBagpipe = L.tileLayer.iiif('http://images.is.ed.ac.uk/luna/servlet/iiif/UoEwmm~2~2~77099~164515/info.json');
+
 staticTiles = L.tileLayer.iiif('http://evil-manifests.davidnewbury.com/iiif/images/garden-1/info.json');
 
 iiifLayers = {
@@ -37,7 +39,8 @@ iiifLayers = {
   'Apostle: Anonymous sculptor of Fl...': apostle,
   'ManuscritKalîla et Dimna, avec de...': bnf,
   'Acrobata Marroquí': acrobata,
-  'A static tile source': staticTiles
+  'A static tile source': staticTiles,
+  'A Compleat Theory of the Scots Highland Bagpipe': scottlandBagpipe
 };
 
 L.control.layers(iiifLayers).addTo(map);

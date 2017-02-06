@@ -25,6 +25,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       this._explicitTileSize = true;
     }
 
+    // Check for an explicit quality
+    if (options.quality) {
+      this._explicitQuality = true;
+    }
+
     options = L.setOptions(this, options);
     this._infoDeferred = new $.Deferred();
     this._infoUrl = url;
@@ -172,18 +177,24 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
   _setQuality: function() {
     var _this = this;
+    var profileToCheck = _this.profile;
 
-    // Quality already specified by consumer
-    if (_this.options.quality) {
+    if (_this._explicitQuality) {
       return;
+    }
+
+    // If profile is an object
+    if (typeof(profileToCheck) === 'object') {
+      profileToCheck = profileToCheck['@id'];
     }
 
     // Set the quality based on the IIIF compliance level
     switch (true) {
-      case /^http:\/\/library.stanford.edu\/iiif\/image-api\/1.1\/compliance.html.*$/.test(_this.profile):
+      case /^http:\/\/library.stanford.edu\/iiif\/image-api\/1.1\/compliance.html.*$/.test(profileToCheck):
         _this.options.quality = 'native';
         break;
-      case /^http:\/\/iiif.io\/api\/image\/2.*$/.test(_this.profile):
+      // Assume later profiles and set to default
+      default:
         _this.options.quality = 'default';
         break;
     }
