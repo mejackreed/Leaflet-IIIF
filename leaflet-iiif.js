@@ -141,7 +141,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
           }
         }
 
-        ceilLog2 = function(x) {
+        function ceilLog2(x) {
           return Math.ceil(Math.log(x) / Math.LN2);
         };
 
