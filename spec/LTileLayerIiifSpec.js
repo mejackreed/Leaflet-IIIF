@@ -186,4 +186,36 @@ describe('L.TileLayer.Iiif', function() {
     });
     
   });
+
+    describe('setMaxBounds', function() {
+    var iiifLayer;
+
+    beforeEach(function() {
+      iiifLayer = iiifLayerFactory();
+    });
+
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
+
+    it('by default is off', function(done) {
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.setMaxBounds).toBe(false);
+        expect(map.options.maxBounds).toBe(undefined); // documentation says default should be null? 
+        done();
+      });
+    });
+    
+    it('can be configured to be on', function(done) {
+      var iiifLayerSetMaxBounds = iiifLayerFactory({ setMaxBounds: true });
+      map.addLayer(iiifLayerSetMaxBounds);
+      iiifLayerSetMaxBounds.on('load', function() {
+        expect(iiifLayerSetMaxBounds.options.setMaxBounds).toBe(true);
+        expect(map.options.maxBounds.getSouthWest().toString()).toBe('LatLng(-478, 0)');
+        expect(map.options.maxBounds.getNorthEast().toString()).toBe('LatLng(0, 679)');
+        done();
+      });
+    });
+  });
 });
