@@ -1,7 +1,7 @@
 {
   "name": "leaflet-iiif",
   "main": "leaflet-iiif.js",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "homepage": "https://github.com/mejackreed/Leaflet-IIIF",
   "description": "A Leaflet plugin to view IIIF images",
   "keywords": [
