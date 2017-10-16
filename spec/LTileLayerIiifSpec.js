@@ -28,6 +28,36 @@ describe('L.TileLayer.Iiif', function() {
   it('initializes the map', function(){
     expect(typeof (map)).toEqual('object');
   });
+
+  describe('onAdd', function() {
+    beforeEach(function() {
+      iiifLayer = iiifLayerFactory();
+    });
+
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
+    
+    it('with a fitable tileSize', function(done) {
+      map.addLayer(iiifLayer);
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.minZoom).toBe(0);
+        expect(iiifLayer.options.minNativeZoom).toBe(0);
+        done();
+      });
+    });
+
+    it('with a large tileSize tries to best fit size by setting minNativeZoom and minZoom', function(done) {
+      var largeTileSize = L.tileLayer.iiif('http://localhost:9876/base/fixtures/cantaloupe/info.json');
+      map.addLayer(largeTileSize);
+      largeTileSize.on('load', function() {
+        expect(largeTileSize.options.minZoom).toBe(-2);
+        expect(largeTileSize.options.minNativeZoom).toBe(-2);
+        expect(largeTileSize._prev_map_layersMinZoom).toBe(0)
+        done();
+      });
+    });
+  });
   
   describe('generated tile urls', function() {
     var iiifLayer;
@@ -77,6 +107,17 @@ describe('L.TileLayer.Iiif', function() {
         expect(iiifLayer.options.fitBounds).toBe(true);
         expect(map.getBounds().getSouthWest().toString()).toBe('LatLng(-539, -60)');
         expect(map.getBounds().getNorthEast().toString()).toBe('LatLng(61, 740)');
+        done();
+      });
+    });
+
+    it('with a large tile size', function(done) {
+      var largeTileSize = L.tileLayer.iiif('http://localhost:9876/base/fixtures/cantaloupe/info.json');
+      map.addLayer(largeTileSize);
+      largeTileSize.on('load', function() {
+        expect(largeTileSize.options.fitBounds).toBe(true);
+        expect(map.getBounds().getSouthWest().toString()).toBe('LatLng(-1956, -592)');
+        expect(map.getBounds().getNorthEast().toString()).toBe('LatLng(444, 2608)');
         done();
       });
     });
