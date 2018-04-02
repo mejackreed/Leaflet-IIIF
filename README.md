@@ -16,10 +16,10 @@ Leaflet Versions | Leaflet-IIIF Versions
  - [Demo using the IIIF Image API](http://mejackreed.github.io/Leaflet-IIIF/examples/example.html)
  - [Demo parsing a IIIF manifest](http://mejackreed.github.io/Leaflet-IIIF/examples/manifest.html)
 
-### Install with Bower
+### Install with NPM
 
 ```
-$ bower install leaflet-iiif
+$ npm install leaflet-iiif --save
 ```
 
 ### Quick and easy to get going.
