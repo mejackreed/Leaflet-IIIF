@@ -1,0 +1,83 @@
+{
+  "@context": "http://iiif.io/api/image/2/context.json",
+  "@id": "http://127.0.0.1:8182/iiif/2/IMG_1707.JPG",
+  "protocol": "http://iiif.io/api/image",
+  "width": 4032,
+  "height": 3024,
+  "sizes": [
+    {
+      "width": 126,
+      "height": 95
+    },
+    {
+      "width": 252,
+      "height": 189
+    },
+    {
+      "width": 504,
+      "height": 378
+    },
+    {
+      "width": 1008,
+      "height": 756
+    },
+    {
+      "width": 2016,
+      "height": 1512
+    }
+  ],
+  "tiles": [
+    {
+      "width": 2016,
+      "height": 1512,
+      "scaleFactors": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ]
+    }
+  ],
+  "profile": [
+    "http://iiif.io/api/image/2/level2.json",
+    {
+      "formats": [
+        "tif",
+        "jpg",
+        "gif",
+        "png"
+      ],
+      "maxArea": 400000000,
+      "qualities": [
+        "bitonal",
+        "default",
+        "gray",
+        "color"
+      ],
+      "supports": [
+        "sizeByW",
+        "regionByPx",
+        "sizeByWhListed",
+        "cors",
+        "regionSquare",
+        "sizeByDistortedWh",
+        "sizeAboveFull",
+        "canonicalLinkHeader",
+        "sizeByConfinedWh",
+        "sizeByPct",
+        "jsonldMediaType",
+        "regionByPct",
+        "sizeByH",
+        "rotationArbitrary",
+        "baseUriRedirect",
+        "rotationBy90s",
+        "profileLinkHeader",
+        "sizeByForcedWh",
+        "sizeByWh",
+        "mirroring"
+      ]
+    }
+  ]
+}
