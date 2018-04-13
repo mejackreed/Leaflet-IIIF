@@ -229,7 +229,7 @@ describe('L.TileLayer.Iiif', function() {
     
   });
 
-    describe('setMaxBounds', function() {
+  describe('setMaxBounds', function() {
     var iiifLayer;
 
     beforeEach(function() {
@@ -280,18 +280,16 @@ describe('L.TileLayer.Iiif', function() {
 
     it('with a large tileSize and negative minZoom, ensure that the layer does not persist zoom changes', function(done) {
       
-      $.when(iiifLayer._infoDeferred).done( function() {
-
+      setTimeout( function() {
         map.removeLayer(iiifLayer);
         map.addLayer(iiifLayer);
-      
-      });
+      }, 1000);
 
-        iiifLayer.on('load', function() {
-          expect(iiifLayer.options.minZoom).toBe(-2);
-          expect(iiifLayer.options.minNativeZoom).toBe(-2);
-          done();
-        });
+      iiifLayer.on('load', function() {
+        expect(iiifLayer.options.minZoom).toBe(-2);
+        expect(iiifLayer.options.minNativeZoom).toBe(-2);
+        done();
+      });
       
     });
   });
