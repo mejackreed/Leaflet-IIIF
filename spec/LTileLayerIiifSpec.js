@@ -270,7 +270,7 @@ describe('L.TileLayer.Iiif', function() {
       iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/cantaloupe/info.json');
       map.setMinZoom(-1);
 
-      iiifLayer.addTo(map)
+      //iiifLayer.addTo(map)
       
     });
 
