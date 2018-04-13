@@ -268,7 +268,7 @@ describe('L.TileLayer.Iiif', function() {
     beforeEach(function() {
 
       iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/cantaloupe/info.json');
-      map.setMinZoom(-1);
+      //map.setMinZoom(-1);
 
       //iiifLayer.addTo(map)
       
