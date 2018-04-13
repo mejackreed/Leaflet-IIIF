@@ -57,6 +57,7 @@ describe('L.TileLayer.Iiif', function() {
         done();
       });
     });
+
   });
   
   describe('generated tile urls', function() {
@@ -259,4 +260,41 @@ describe('L.TileLayer.Iiif', function() {
       });
     });
   });
+
+  describe('negativeMinZoom', function() {
+
+    var iiifLayer;
+
+    beforeEach(function() {
+
+      iiifLayer = L.tileLayer.iiif('http://localhost:9876/base/fixtures/cantaloupe/info.json');
+      map.setMinZoom(-1);
+
+      iiifLayer.addTo(map)
+      
+    });
+
+    afterEach(function() {
+      iiifLayer.off('load');
+    });
+
+    it('with a large tileSize and negative minZoom, ensure that the layer does not persist zoom changes', function(done) {
+      
+      $.when(iiifLayer._infoDeferred).done( function() {
+
+        map.removeLayer(iiifLayer);
+        map.addLayer(iiifLayer);
+      
+      });
+
+        iiifLayer.on('load', function() {
+          expect(iiifLayer.options.minZoom).toBe(-2);
+          expect(iiifLayer.options.minNativeZoom).toBe(-2);
+          done();
+        });
+      
+    });
+  });
+
+
 });
