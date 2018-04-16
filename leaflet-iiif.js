@@ -66,6 +66,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     // Wait for deferred to complete
     $.when(_this._infoDeferred).done(function() {
 
+      // Store unmutated imageSizes
+      _this._imageSizesOriginal = _this._imageSizes.slice(0); 
+
       // Set maxZoom for map
       map._layersMaxZoom = _this.maxZoom;
 
@@ -118,6 +121,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var _this = this;
     
     map._layersMinZoom = _this._prev_map_layersMinZoom;
+    _this._imageSizes = _this._imageSizesOriginal;
 
     // Remove maxBounds set for this image
     if(_this.options.setMaxBounds) {
