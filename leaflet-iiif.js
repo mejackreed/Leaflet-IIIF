@@ -201,8 +201,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         };
 
         // Calculates maximum native zoom for the layer
-        _this.maxNativeZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
-          ceilLog2(_this.y / _this.options.tileSize));
+        _this.maxNativeZoom = Math.max(
+          ceilLog2(_this.x / _this.options.tileSize),
+          ceilLog2(_this.y / _this.options.tileSize),
+          0
+        );
         _this.options.maxNativeZoom = _this.maxNativeZoom;
         
         // Enable zooming further than native if maxZoom option supplied
