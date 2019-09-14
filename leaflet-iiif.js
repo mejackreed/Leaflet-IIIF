@@ -161,8 +161,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var _this = this;
 
     // Look for a way to do this without jQuery
-    $.getJSON(_this._infoUrl)
-      .done(function(data) {
+    fetch(_this._infoUrl)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
         _this.y = data.height;
         _this.x = data.width;
 
