@@ -2,7 +2,9 @@
 
 A Leaflet plugin for viewing IIIF images. [See the demo](http://mejackreed.github.io/Leaflet-IIIF/examples/example.html)
 
-Requires [Leaflet.js](http://leafletjs.com/) and [jQuery](http://jquery.com/)
+Requires [Leaflet.js](http://leafletjs.com/).
+
+Leaflet-IIIF relies on browser support for [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). If you need to support IE or other browsers without this, please use a polyfill.
 
 **Note on Leaflet Compatibility**
 
