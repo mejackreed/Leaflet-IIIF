@@ -32,7 +32,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     }
 
     options = L.setOptions(this, options);
-    this._infoDeferred = new $.Deferred();
+    this._infoPromise = null;
     this._infoUrl = url;
     this._baseUrl = this._templateUrl();
     this._getInfo();
@@ -63,9 +63,8 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   onAdd: function(map) {
     var _this = this;
 
-    // Wait for deferred to complete
-    $.when(_this._infoDeferred).done(function() {
-
+    // Wait for info.json fetch and parse to complete
+    Promise.all([_this._infoPromise]).then(function() {
       // Store unmutated imageSizes
       _this._imageSizesOriginal = _this._imageSizes.slice(0); 
 
@@ -160,8 +159,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
   _getInfo: function() {
     var _this = this;
 
-    // Look for a way to do this without jQuery
-    fetch(_this._infoUrl)
+    _this._infoPromise = fetch(_this._infoUrl)
       .then(function(response) {
         return response.json();
       })
@@ -228,9 +226,6 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         _this._tierSizes = tierSizes;
         _this._imageSizes = imageSizes;
-
-        // Resolved Deferred to initiate tilelayer load
-        _this._infoDeferred.resolve();
       });
   },
 
