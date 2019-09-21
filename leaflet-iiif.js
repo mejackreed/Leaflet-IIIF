@@ -72,6 +72,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       // Set maxZoom for map
       map._layersMaxZoom = _this.maxZoom;
 
+      // Call add TileLayer
+      L.TileLayer.prototype.onAdd.call(_this, map);
+
       // Set minZoom and minNativeZoom based on how the imageSizes match up
       var smallestImage = _this._imageSizes[0];
       var mapSize = _this._map.getSize();
@@ -90,9 +93,6 @@ L.TileLayer.Iiif = L.TileLayer.extend({
       _this.options.minNativeZoom = newMinZoom;
       _this._prev_map_layersMinZoom = _this._map._layersMinZoom;
       _this._map._layersMinZoom = newMinZoom;
-
-      // Call add TileLayer
-      L.TileLayer.prototype.onAdd.call(_this, map);
 
       if (_this.options.fitBounds) {
         _this._fitBounds();
@@ -201,8 +201,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         };
 
         // Calculates maximum native zoom for the layer
-        _this.maxNativeZoom = Math.max(ceilLog2(_this.x / _this.options.tileSize),
-          ceilLog2(_this.y / _this.options.tileSize));
+        _this.maxNativeZoom = Math.max(
+          ceilLog2(_this.x / _this.options.tileSize),
+          ceilLog2(_this.y / _this.options.tileSize),
+          0
+        );
         _this.options.maxNativeZoom = _this.maxNativeZoom;
         
         // Enable zooming further than native if maxZoom option supplied
@@ -263,7 +266,6 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     return this._infoToBaseUrl() + '{region}/{size}/{rotation}/{quality}.{format}';
   },
   _isValidTile: function(coords) {
-    var tileBounds = this._tileCoordsToBounds(coords);
     var _this = this;
     var zoom = _this._getZoomForUrl();
     var sizes = _this._tierSizes[zoom];
@@ -279,6 +281,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     }else {
       return true;
     }
+  },
+  _tileShouldBeLoaded: function(coords) {
+    return this._isValidTile(coords);
   },
   _getInitialZoom: function (mapSize) {
     var _this = this;
