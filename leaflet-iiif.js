@@ -114,6 +114,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         tile.tile.style.height = height + 'px';
 
       });
+    })
+    .catch(function(err){
+        console.error(err);
     });
   },
   onRemove: function(map) {
@@ -162,6 +165,9 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     _this._infoPromise = fetch(_this._infoUrl)
       .then(function(response) {
         return response.json();
+      })
+      .catch(function(err){
+          console.error(err);
       })
       .then(function(data) {
         _this.y = data.height;
@@ -226,7 +232,11 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         _this._tierSizes = tierSizes;
         _this._imageSizes = imageSizes;
+      })
+      .catch(function(err){
+          console.error(err);
       });
+      
   },
 
   _setQuality: function() {
