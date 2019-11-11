@@ -1,0 +1,28 @@
+{
+  "@context": "http://iiif.io/api/image/3/context.json",
+  "extraFormats": [
+    "jpg",
+    "png"
+  ],
+  "extraQualities": [
+    "default",
+    "color",
+    "gray"
+  ],
+  "height": 1271,
+  "id": "http://iiif.io/api/image/3.0/example/reference/421e65be2ce95439b3ad6ef1f2ab87a9-dee-xray",
+  "profile": "level1",
+  "protocol": "http://iiif.io/api/image",
+  "tiles": [
+    {
+      "height": 512,
+      "scaleFactors": [
+        1,
+        2
+      ],
+      "width": 512
+    }
+  ],
+  "type": "ImageService3",
+  "width": 2000
+}
