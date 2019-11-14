@@ -52,12 +52,19 @@ L.TileLayer.Iiif = L.TileLayer.extend({
     var xDiff = (maxx - minx);
     var yDiff = (maxy - miny);
 
+    // Canonical URI Syntax for v2
+    var size = Math.ceil(xDiff / scale) + ',';
+    if (_this.type === 'ImageService3') {
+      // Cannonical URI Syntax for v3
+      size = size + Math.ceil(yDiff / scale);
+    }
+
     return L.Util.template(this._baseUrl, L.extend({
       format: _this.options.tileFormat,
       quality: _this.quality,
       region: [minx, miny, xDiff, yDiff].join(','),
       rotation: 0,
-      size: Math.ceil(xDiff / scale) + ','
+      size: size
     }, this.options));
   },
   onAdd: function(map) {
@@ -187,6 +194,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
         }else {
           _this.profile = data.profile;
         }
+        _this.type = data.type;
 
         _this._setQuality();
 

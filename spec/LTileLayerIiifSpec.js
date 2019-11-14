@@ -88,7 +88,21 @@ describe('L.TileLayer.Iiif', function() {
         });
         done();
       })
-    })
+    });
+
+    it('generates a v3 canonical url', function(done) {
+      var v3Image = L.tileLayer.iiif('http://localhost:9876/base/fixtures/v3/info.json');
+      map.addLayer(v3Image);
+      v3Image.on('load', function() {
+        var i = 0;
+        eachImg(v3Image, function (img) {
+          expect(img.src).toBe('http://localhost:9876/base/fixtures/v3/0,0,2000,1271/500,318/0/default.jpg')
+          i++;
+        });
+        done();
+      })
+    });
+    
   });
 
   describe('fitBounds', function() {
