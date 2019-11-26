@@ -8,10 +8,11 @@ Leaflet-IIIF relies on browser support for [Promise](https://developer.mozilla.o
 
 **Note on Leaflet Compatibility**
 
-Leaflet Versions | Leaflet-IIIF Versions
----------------- | ---------------------
-< 1.0.0 | < 1.0.0
->= 1.0 | >= 1.0
+| Leaflet Versions | Leaflet-IIIF Versions |
+| ---------------- | --------------------- |
+| < 1.0.0 | < 1.0.0 |
+| >= 1.0 | >= 1.0 |
+
 
 ### Examples
 
