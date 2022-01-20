@@ -77,7 +77,10 @@ Run the test suite
 $ npm test
 ```
 
-Access the examples at http://127.0.0.1:8080/examples/example.html
+Access the examples at:
+
+- http://127.0.0.1:8080/examples/example.html
+- http://127.0.0.1:8080/examples/manifest.html
 
 ### Leaflet-IIIF Examples
 

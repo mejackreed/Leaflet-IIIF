@@ -7,7 +7,7 @@ map = L.map('map', {
   zoom: 0
 });
 
-var manifestUrl = 'http://iiif.bodleian.ox.ac.uk/iiif/manifest/9fb27615-ede3-4fa0-89e4-f0785acbba06.json';
+var manifestUrl = 'https://iiif.bodleian.ox.ac.uk/iiif/manifest/2d063a5f-3f17-4133-b02b-d3a2c5c8348b.json';
 
 // Grab a IIIF manifest
 $.getJSON(manifestUrl, function(data) {
