@@ -28,6 +28,8 @@ $ npm install leaflet-iiif --save
 ### Quick and easy to get going.
 
 ```
+import 'leaflet-iiif';
+
 var map = L.map('map', {
   center: [0, 0],
   crs: L.CRS.Simple,
@@ -77,7 +79,10 @@ Run the test suite
 $ npm test
 ```
 
-Access the examples at http://127.0.0.1:8080/examples/example.html
+Access the examples at:
+
+- http://127.0.0.1:8080/examples/example.html
+- http://127.0.0.1:8080/examples/manifest.html
 
 ### Leaflet-IIIF Examples
 
