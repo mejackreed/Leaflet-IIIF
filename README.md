@@ -28,6 +28,8 @@ $ npm install leaflet-iiif --save
 ### Quick and easy to get going.
 
 ```
+import 'leaflet-iiif';
+
 var map = L.map('map', {
   center: [0, 0],
   crs: L.CRS.Simple,
