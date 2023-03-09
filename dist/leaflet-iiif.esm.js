@@ -1,5 +1,7 @@
+import L from 'leaflet/dist/leaflet-src.esm';
+
 /*
- * Leaflet-IIIF 3.0.0
+ * Leaflet-IIIF 3.1.0-alpha.1
  * IIIF Viewer for Leaflet
  * by Jack Reed, @mejackreed
  */
@@ -213,8 +215,7 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 
         function ceilLog2(x) {
           return Math.ceil(Math.log(x) / Math.LN2);
-        };
-
+        }
         // Calculates maximum native zoom for the layer
         _this.maxNativeZoom = Math.max(
           ceilLog2(_this.x / _this.options.tileSize),
@@ -321,3 +322,4 @@ L.TileLayer.Iiif = L.TileLayer.extend({
 L.tileLayer.iiif = function(url, options) {
   return new L.TileLayer.Iiif(url, options);
 };
+//# sourceMappingURL=leaflet-iiif.esm.js.map
