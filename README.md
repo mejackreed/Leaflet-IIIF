@@ -67,6 +67,11 @@ Install the dependencies
 $ npm install
 ```
 
+Build the code
+```
+$ npm run build
+```
+
 Run the server
 
 ```
